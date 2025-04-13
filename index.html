@@ -1,104 +1,887 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Medwin – OSCE Clinical Simulation App</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f4f4f4;
-      color: #333;
-      line-height: 1.6;
-    }
-    header {
-      background: #0077cc;
-      color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .features {
-      margin-top: 20px;
-    }
-    .features li {
-      margin-bottom: 10px;
-    }
-    .coming-soon {
-      margin: 40px 0;
-      padding: 20px;
-      background: #fff;
-      border-left: 5px solid #0077cc;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    input[type="email"] {
-      padding: 10px;
-      width: 70%;
-      border: 1px solid #ccc;
-      margin-right: 10px;
-    }
-    button {
-      padding: 10px 20px;
-      background: #0077cc;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #666;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medwin - OSCE Preparation for Medical Students</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary: #34a853;
+            --light-bg: #f8f9fa;
+            --dark-text: #202124;
+            --light-text: #5f6368;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            position: relative;
+        }
+        
+        .logo-icon::before {
+            content: "M";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 8rem 1rem 5rem;
+            text-align: center;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .primary-cta {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .primary-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .secondary-cta {
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .secondary-cta:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .app-preview {
+            max-width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: -100px;
+            position: relative;
+            z-index: 10;
+            background-color: white;
+            overflow: hidden;
+        }
+        
+        .app-preview img {
+            width: 100%;
+            display: block;
+        }
+        
+        .features {
+            background-color: var(--light-bg);
+            padding: 8rem 1rem 4rem;
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+        
+        .section-title p {
+            color: var(--light-text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            color: var(--light-text);
+        }
+        
+        .how-it-works {
+            padding: 4rem 1rem;
+        }
+        
+        .how-it-works-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .step h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .step p {
+            color: var(--light-text);
+        }
+        
+        .testimonials {
+            background-color: var(--light-bg);
+            padding: 4rem 1rem;
+        }
+        
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+            padding: 0 1rem;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 2rem;
+            position: absolute;
+            color: var(--primary);
+            opacity: 0.3;
+        }
+        
+        .testimonial-text::before {
+            left: -5px;
+            top: -10px;
+        }
+        
+        .testimonial-text::after {
+            right: -5px;
+            bottom: -20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light-bg);
+            margin-right: 1rem;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+        
+        .cta-section {
+            padding: 6rem 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .download-button {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            color: var(--dark-text);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .download-button:hover {
+            transform: translateY(-3px);
+        }
+        
+        .download-icon {
+            margin-right: 0.8rem;
+            font-size: 1.5rem;
+        }
+        
+        .download-text {
+            text-align: left;
+        }
+        
+        .download-text span {
+            display: block;
+        }
+        
+        .download-text .small-text {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .download-text .big-text {
+            font-weight: 600;
+        }
+        
+        footer {
+            background-color: var(--dark-text);
+            color: white;
+            padding: 4rem 1rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .app-preview {
+                max-width: 230px;
+                margin-bottom: -80px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding-top: 6rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card, .testimonial-card {
+                padding: 1.5rem;
+            }
+            
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <h1>Medwin</h1>
-    <p>Practice OSCEs. Master Clinical Exams. Anywhere.</p>
-  </header>
-
-  <div class="container">
-    <section class="features">
-      <h2>About the App</h2>
-      <p><strong>Medwin</strong> is a mobile app for clinical year medical students to practice and prepare for OSCEs (Objective Structured Clinical Examinations).</p>
-      <ul>
-        <li>🩺 Virtual patient simulations for history-taking & clinical exams</li>
-        <li>📘 Step-by-step guides for OSCE prep</li>
-        <li>🎯 Leaderboards and friend challenges</li>
-        <li>🔐 Premium membership with more features coming soon</li>
-      </ul>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-icon"></span>
+                Medwin
+            </div>
+            <nav>
+                <button class="mobile-menu-btn">☰</button>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#download">Download</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Master OSCE with Medwin</h1>
+            <p>The ultimate app for medical students to practice, simulate and excel in clinical examinations. Enhance your OSCE preparation with virtual patients, interactive guides, and friendly competitions.</p>
+            <div class="cta-buttons">
+                <a href="#download" class="cta-button primary-cta">Download Now</a>
+                <a href="#features" class="cta-button secondary-cta">Learn More</a>
+            </div>
+            <div class="app-preview">
+                <img src="/api/placeholder/300/600" alt="Medwin App Preview">
+            </div>
+        </div>
     </section>
-
-    <section class="coming-soon">
-      <h3>🚀 Coming Soon</h3>
-      <p>We’re launching soon on iOS & Android. Want early access?</p>
-      <form action="#" method="post">
-        <input type="email" placeholder="Enter your email" required />
-        <button type="submit">Notify Me</button>
-      </form>
+    
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="section-title">
+                <h2>Key Features</h2>
+                <p>Medwin offers a comprehensive set of tools designed specifically for medical students preparing for their OSCEs</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍⚕️</div>
+                    <h3>Virtual Patient Simulations</h3>
+                    <p>Practice taking histories with realistic virtual patients in a safe, controlled environment before facing real OSCEs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Comprehensive Guides</h3>
+                    <p>Access detailed guides on history-taking and physical examinations, organized by system and specialty.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Competitive Leaderboards</h3>
+                    <p>Track your progress, compete with friends, and see how you rank among peers at your medical school.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚔️</div>
+                    <h3>Challenge Friends</h3>
+                    <p>Send challenges to fellow students for friendly OSCE simulation battles to enhance learning together.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Performance Analytics</h3>
+                    <p>Get detailed feedback and analytics on your performance to identify strengths and areas for improvement.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3>Personalized Profile</h3>
+                    <p>Customize your learning experience based on your specialty interests and learning needs.</p>
+                </div>
+            </div>
+        </div>
     </section>
-
-    <section>
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:mawulikplimgodwin@gmail.com">mawulikplimgodwin@gmail.com</a><br>
-      Phone: +233 0595231901</p>
+    
+    <section class="how-it-works" id="how-it-works">
+        <div class="how-it-works-container">
+            <div class="section-title">
+                <h2>How Medwin Works</h2>
+                <p>Get started with Medwin in just a few simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h3>Download the App</h3>
+                    <p>Available on iOS and Android platforms for free, with premium features for subscribers.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h3>Create Your Profile</h3>
+                    <p>Set up your profile with your year of study, medical school, and areas of interest.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h3>Start Practicing</h3>
+                    <p>Begin with the guides or jump straight into simulations to start improving your clinical skills.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <h3>Track Your Progress</h3>
+                    <p>Monitor your improvement over time with detailed analytics and performance metrics.</p>
+                </div>
+            </div>
+        </div>
     </section>
-  </div>
-
-  <footer>
-    &copy; 2025 Medwin. All rights reserved.
-  </footer>
-
-</body>
-</html>
+    
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container">
+            <div class="section-title">
+                <h2>What Medical Students Say</h2>
+                <p>Hear from students who have transformed their OSCE preparation with Medwin</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Medwin has completely changed how I approach OSCE preparation. The virtual patient simulations are incredibly realistic and have helped build my confidence for the real exams.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/50/50" alt="Sarah J.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah J.</h4>
+                            <p>4th Year Medical Student</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        The competitive aspect of Medwin makes studying for OSCEs actually fun! I've learned so much by challenging my friends and seeing different approaches to the same clinical scenarios.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/50/50" alt="Michael T.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael T.</h4>
+                            <p>5th Year Medical Student</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        As someone who always struggled with cardiovascular examinations, the detailed guides and practice simulations in Medwin have made a tremendous difference. I passed my last OSCE with distinction!
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/50/50" alt="Aisha M.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Aisha M.</h4>
+                            <p>Clinical Year Student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section" id="download">
+        <div class="cta-container">
+            <h2>Ready to Ace Your OSCEs?</h2>
+            <p>Download Medwin today and transform your clinical skills preparation.</p>
+            <div class="download-buttons">
+                <a href="#" class="download-button">
+                    <div class="download-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 12l10 10 10-10z"></path>
+                        </svg>
+                    </div>
+                    <div class="download-text">
+                        <span class="small-text">GET IT ON</span>
+                        <span class="big-text">Google Play</span>
+                    </div>
+                </a>
+                <a href="#" class="download-button">
+                    <div class="download-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6c0-2.76-2.24-5-5-5s-5 2.24-5 5v1h10V6z"></path>
+                            <path d="M18 7H6v15h12V7z"></path>
+                        </svg>
+                    </div>
+                    <div class="download-text">
+                        <span class="small-text">Download on the</span>
+                        <span class="big-text">App Store</span>
+                    </div>
+                </a>
+            </div>
+            <p>Join thousands of medical students already using Medwin to excel in their clinical exams.</p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Medwin</h3>
+                <p>The ultimate OSCE preparation app for clinical year medical students.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Features</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Virtual Simulations</a></li>
+                    <li><a href="#">OSCE Guides</a></li>
+                    <li><a href="#">Leaderboards</a></li>
+                    <li><a href="#">Challenges</a></li>
+                    <li><a href="#">Performance Analytics</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Support Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Press Kit</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Medwin. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('nav ul');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a nav link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Add active class to nav items on scroll
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('nav ul li a');
+                
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
