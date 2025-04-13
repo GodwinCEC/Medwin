@@ -55,24 +55,11 @@
             align-items: center;
         }
         
-        .logo-icon {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            background-color: white;
-            border-radius: 50%;
+        .app-icon {
+            width: 36px;
+            height: 36px;
             margin-right: 10px;
-            position: relative;
-        }
-        
-        .logo-icon::before {
-            content: "M";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--primary);
-            font-weight: bold;
+            border-radius: 8px;
         }
         
         nav ul {
@@ -390,48 +377,81 @@
             font-size: 1.1rem;
         }
         
-        .download-buttons {
+        .email-signup {
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .email-signup form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .email-signup input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border-radius: 30px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .success-message {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .signup-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .signup-btn:hover {
+            background-color: #2a8f45;
+            transform: translateY(-2px);
+        }
+        
+        .launch-info {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            flex-wrap: wrap;
+            gap: 2rem;
             margin-bottom: 2rem;
         }
         
-        .download-button {
+        .launch-item {
             display: flex;
             align-items: center;
-            background-color: white;
-            color: var(--dark-text);
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: transform 0.3s;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
         }
         
-        .download-button:hover {
-            transform: translateY(-3px);
+        .launch-icon {
+            font-size: 1.8rem;
+            margin-right: 1rem;
         }
         
-        .download-icon {
-            margin-right: 0.8rem;
-            font-size: 1.5rem;
+        .launch-text h4 {
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
         }
         
-        .download-text {
-            text-align: left;
-        }
-        
-        .download-text span {
-            display: block;
-        }
-        
-        .download-text .small-text {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-        
-        .download-text .big-text {
-            font-weight: 600;
+        .launch-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
         
         footer {
@@ -503,7 +523,7 @@
             font-size: 0.9rem;
         }
         
-        @media (max-width: 768px) {
+                    @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.2rem;
             }
@@ -545,9 +565,19 @@
                 margin: 0.5rem 0;
             }
             
-            .download-buttons {
+            .email-signup form {
                 flex-direction: column;
-                align-items: center;
+            }
+            
+            .email-signup input,
+            .signup-btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .launch-info {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
         
@@ -580,7 +610,7 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <span class="logo-icon"></span>
+                <img src="medwin-icon.png" alt="Medwin Logo" class="app-icon">
                 Medwin
             </div>
             <nav>
@@ -589,7 +619,7 @@
                     <li><a href="#features">Features</a></li>
                     <li><a href="#how-it-works">How It Works</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#download">Download</a></li>
+                    <li><a href="#signup">Join Waitlist</a></li>
                 </ul>
             </nav>
         </div>
@@ -600,7 +630,7 @@
             <h1>Master OSCE with Medwin</h1>
             <p>The ultimate app for medical students to practice, simulate and excel in clinical examinations. Enhance your OSCE preparation with virtual patients, interactive guides, and friendly competitions.</p>
             <div class="cta-buttons">
-                <a href="#download" class="cta-button primary-cta">Download Now</a>
+                <a href="#signup" class="cta-button primary-cta">Get Early Access</a>
                 <a href="#features" class="cta-button secondary-cta">Learn More</a>
             </div>
             <div class="app-preview">
@@ -659,8 +689,8 @@
             <div class="steps">
                 <div class="step">
                     <span class="step-number">1</span>
-                    <h3>Download the App</h3>
-                    <p>Available on iOS and Android platforms for free, with premium features for subscribers.</p>
+                    <h3>Join the Waitlist</h3>
+                    <p>Sign up to be notified when Medwin launches and get early access to the beta.</p>
                 </div>
                 <div class="step">
                     <span class="step-number">2</span>
@@ -734,36 +764,40 @@
         </div>
     </section>
     
-    <section class="cta-section" id="download">
+    <section class="cta-section" id="signup">
         <div class="cta-container">
-            <h2>Ready to Ace Your OSCEs?</h2>
-            <p>Download Medwin today and transform your clinical skills preparation.</p>
-            <div class="download-buttons">
-                <a href="#" class="download-button">
-                    <div class="download-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L2 12l10 10 10-10z"></path>
-                        </svg>
-                    </div>
-                    <div class="download-text">
-                        <span class="small-text">GET IT ON</span>
-                        <span class="big-text">Google Play</span>
-                    </div>
-                </a>
-                <a href="#" class="download-button">
-                    <div class="download-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 6c0-2.76-2.24-5-5-5s-5 2.24-5 5v1h10V6z"></path>
-                            <path d="M18 7H6v15h12V7z"></path>
-                        </svg>
-                    </div>
-                    <div class="download-text">
-                        <span class="small-text">Download on the</span>
-                        <span class="big-text">App Store</span>
-                    </div>
-                </a>
+            <h2>Coming Soon - Join the Waitlist!</h2>
+            <p>Be among the first to experience Medwin when we launch. Sign up for early access.</p>
+            <div class="email-signup">
+                <form id="waitlist-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="signup-btn">Join Waitlist</button>
+                </form>
             </div>
-            <p>Join thousands of medical students already using Medwin to excel in their clinical exams.</p>
+            <div class="launch-info">
+                <div class="launch-item">
+                    <div class="launch-icon">🚀</div>
+                    <div class="launch-text">
+                        <h4>Launch Date</h4>
+                        <p>Coming Q2 2025</p>
+                    </div>
+                </div>
+                <div class="launch-item">
+                    <div class="launch-icon">💬</div>
+                    <div class="launch-text">
+                        <h4>Early Access</h4>
+                        <p>Limited beta spots available</p>
+                    </div>
+                </div>
+                <div class="launch-item">
+                    <div class="launch-icon">📱</div>
+                    <div class="launch-text">
+                        <h4>Platforms</h4>
+                        <p>iOS & Android</p>
+                    </div>
+                </div>
+            </div>
+            <p>Be part of the future of OSCE preparation for medical students.</p>
         </div>
     </section>
     
@@ -884,4 +918,17 @@
                     }
                 });
             });
+            
+            // Handle waitlist form submission
+            const waitlistForm = document.getElementById('waitlist-form');
+            if (waitlistForm) {
+                waitlistForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    
+                    // Here you would typically send this to your backend
+                    // For now, we'll just show a thank you message
+                    this.innerHTML = '<p class="success-message">Thank you! We\'ll notify you when Medwin launches.</p>';
+                });
+            }
         });
